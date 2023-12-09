@@ -26,9 +26,9 @@ public class IrisPreLaunch implements PreLaunchEntrypoint {
         }
 
         if (GraphicsEnvironment.isHeadless() || !hasAwtSupport()) {
-            TinyFileDialogs.tinyfd_messageBox("Cannot launch game", "The Iris Installer is not a mod, please remove it from your mods folder and download Iris from Modrinth. (https://modrinth.com/mod/iris)", "yesno", "error", false);
+            TinyFileDialogs.tinyfd_messageBox("Cannot launch game", "The MCME Installer is not a mod, please remove it from your mods folder and download Iris from Modrinth. (https://modrinth.com/mod/iris)", "yesno", "error", false);
         } else {
-            if(JOptionPane.showConfirmDialog(null, "The Iris Installer is not a mod, please remove it from your mods folder and download Iris from Modrinth. Would you like to launch Modrinth?", "Cannot launch game", JOptionPane.YES_NO_OPTION) == 0) {
+            if(JOptionPane.showConfirmDialog(null, "The MCME Installer is not a mod, please remove it from your mods folder and download Iris from Modrinth. Would you like to launch Modrinth?", "Cannot launch game", JOptionPane.YES_NO_OPTION) == 0) {
                 try {
                     openURL(new URI("https://modrinth.com/mod/iris"));
                 } catch (URISyntaxException e) {

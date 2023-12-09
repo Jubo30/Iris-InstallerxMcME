@@ -51,7 +51,7 @@ public class NewInstaller extends JFrame {
      * Creates new form Installer
      */
     public NewInstaller() {
-        super("Iris Installer");
+        super("MCME Installer");
         Main.LOADER_META = new MetaHandler(("v2/versions/loader"));
 
         try {
@@ -239,7 +239,7 @@ public class NewInstaller extends JFrame {
         irisInstallerLabel.setFont(irisInstallerLabel.getFont().deriveFont((float)36));
         irisInstallerLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         irisInstallerLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iris_profile_icon.png"))); // NOI18N
-        irisInstallerLabel.setText(" Iris & Sodium");
+        irisInstallerLabel.setText(" MCME-Installer");
         irisInstallerLabel.setMaximumSize(new java.awt.Dimension(350, 64));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -321,7 +321,7 @@ public class NewInstaller extends JFrame {
         installType.add(standaloneType);
         standaloneType.setFont(standaloneType.getFont().deriveFont((float)16));
         standaloneType.setSelected(true);
-        standaloneType.setText("Iris Install");
+        standaloneType.setText("MCME Install");
         standaloneType.setToolTipText("This installs Iris and Sodium by itself, without any mods.");
         standaloneType.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -505,6 +505,8 @@ public class NewInstaller extends JFrame {
 
         String zipName = (betaSelection.isSelected() ? "Iris-Sodium-Beta" : "Iris-Sodium") + "-" + selectedVersion.name + ".zip";
         String downloadURL = "https://github.com/IrisShaders/Iris-Installer-Files/releases/latest/download/" + zipName;
+        //String zipName = "MCME-Mods.zip";
+        //String downloadURL = "https://github.com/Jubo30/Iris-InstallerxMcME/releases/download/3.0.2/MCME-Mods.zip";
         File saveLocation = getStorageDirectory().resolve(zipName).toFile();
 
         final Downloader downloader = new Downloader(downloadURL, saveLocation);
