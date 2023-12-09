@@ -42,8 +42,8 @@ public class NewInstaller extends JFrame {
     private String snapshotPlaceholder = "Warning: <version> is a snapshot build and may";
     private String BASE_URL = "https://raw.githubusercontent.com/IrisShaders/Iris-Installer-Files/master/";
     private boolean finishedSuccessfulInstall;
-    private InstallerMeta.Version selectedVersion;
-    private final List<InstallerMeta.Version> GAME_VERSIONS;
+    private String selectedVersion = "1.20.1";
+    //private final List<InstallerMeta.Version> GAME_VERSIONS;
     private final InstallerMeta INSTALLER_META;
     private Path customInstallDir;
 
@@ -79,10 +79,6 @@ public class NewInstaller extends JFrame {
             throw new RuntimeException(e);
         }
 
-        GAME_VERSIONS = INSTALLER_META.getVersions();
-        Collections.reverse(GAME_VERSIONS);
-        selectedVersion = GAME_VERSIONS.get(0);
-
         initComponents();
 
         betaSelection.setText("Use " + INSTALLER_META.getBetaSnippet() + " beta version (not recommended)");
@@ -99,11 +95,14 @@ public class NewInstaller extends JFrame {
             betaSelection.setVisible(false);
         }
 
+        /*
         gameVersionList.removeAllItems();
 
         for (InstallerMeta.Version version : GAME_VERSIONS) {
             gameVersionList.addItem(version.name);
         }
+
+         */
 
         // Set default dir (.minecraft)
         directoryName.setText(getDefaultInstallDir().toFile().getName());
@@ -159,6 +158,7 @@ public class NewInstaller extends JFrame {
         return os.contains("mac") ? getAppDataDirectory().resolve("minecraft") : getAppDataDirectory().resolve(".minecraft");
     }
 
+    //marker
     public boolean installFromZip(File zip) {
         try {
             int BUFFER_SIZE = 2048; // Buffer Size
@@ -247,6 +247,7 @@ public class NewInstaller extends JFrame {
         gridBagConstraints.insets = new java.awt.Insets(30, 0, 0, 0);
         getContentPane().add(irisInstallerLabel, gridBagConstraints);
 
+        /*
         gameVersionLabel.setFont(gameVersionLabel.getFont().deriveFont(gameVersionLabel.getFont().getStyle() | java.awt.Font.BOLD, 16));
         gameVersionLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gameVersionLabel.setText("Select game version:");
@@ -262,6 +263,7 @@ public class NewInstaller extends JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
         getContentPane().add(gameVersionLabel, gridBagConstraints);
+         */
 
         outdatedText1.setFont(outdatedText1.getFont().deriveFont((float)16));
         outdatedText1.setForeground(new java.awt.Color(255, 204, 0));
@@ -347,6 +349,7 @@ public class NewInstaller extends JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
         getContentPane().add(installationTypesContainer, gridBagConstraints);
 
+        /*
         gameVersionList.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         gameVersionList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1.19", "1.18.2", "1.17.1", "1.16.5" }));
         gameVersionList.setMaximumSize(new java.awt.Dimension(168, 35));
@@ -354,7 +357,7 @@ public class NewInstaller extends JFrame {
         gameVersionList.setPreferredSize(new java.awt.Dimension(168, 35));
         gameVersionList.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                gameVersionListItemStateChanged(evt);
+                //gameVersionListItemStateChanged(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -362,6 +365,7 @@ public class NewInstaller extends JFrame {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
         getContentPane().add(gameVersionList, gridBagConstraints);
+         */
 
         betaSelection.setFont(betaSelection.getFont().deriveFont((float)16));
         betaSelection.setText("Use beta version (not recommended)");
@@ -435,9 +439,10 @@ public class NewInstaller extends JFrame {
         }
     }//GEN-LAST:event_directoryNameMouseClicked
 
+    /*
     private void gameVersionListItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_gameVersionListItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            selectedVersion = GAME_VERSIONS.stream().filter(v -> v.name.equals(evt.getItem())).findFirst().orElse(GAME_VERSIONS.get(0));
+            //selectedVersion = GAME_VERSIONS.stream().filter(v -> v.name.equals(evt.getItem())).findFirst().orElse(GAME_VERSIONS.get(0));
 
             if (selectedVersion.outdated) {
                 outdatedText1.setText(outdatedPlaceholder.replace("<version>", selectedVersion.name));
@@ -461,6 +466,8 @@ public class NewInstaller extends JFrame {
         }
     }//GEN-LAST:event_gameVersionListItemStateChanged
 
+     */
+
     private void standaloneTypeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_standaloneTypeMouseClicked
         installAsMod = false;
     }//GEN-LAST:event_standaloneTypeMouseClicked
@@ -470,16 +477,16 @@ public class NewInstaller extends JFrame {
     }//GEN-LAST:event_fabricTypeMouseClicked
 
     private void installButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_installButtonMouseClicked
-        String loaderName = installAsMod ? "fabric-loader" : "iris-fabric-loader";
+        String loaderName = installAsMod ? "fabric-loader" : "mcme-loader";
 
         try {
             URL loaderVersionUrl = new URL("https://raw.githubusercontent.com/IrisShaders/Iris-Installer-Maven/master/latest-loader");
-            String profileName = installAsMod ? "Fabric Loader " : "Iris & Sodium for ";
+            String profileName = installAsMod ? "Fabric Loader " : "MCME for ";
             VanillaLauncherIntegration.Icon profileIcon = installAsMod ? VanillaLauncherIntegration.Icon.FABRIC : VanillaLauncherIntegration.Icon.IRIS;
-            Path modsFolder0 = installAsMod ? getInstallDir().resolve("mods") : getInstallDir().resolve("iris-reserved").resolve(selectedVersion.name);
+            Path modsFolder0 = installAsMod ? getInstallDir().resolve("mods") : getInstallDir().resolve("iris-reserved").resolve(selectedVersion);
 
             String loaderVersion = Main.LOADER_META.getLatestVersion(false).getVersion();
-            boolean success = VanillaLauncherIntegration.installToLauncher(this, getVanillaGameDir(), getInstallDir(), modsFolder0, profileName + selectedVersion.name, selectedVersion.name, loaderName, loaderVersion, profileIcon);
+            boolean success = VanillaLauncherIntegration.installToLauncher(this, getVanillaGameDir(), getInstallDir(), modsFolder0, profileName + selectedVersion, selectedVersion, loaderName, loaderVersion, profileIcon);
             if (!success) {
                 System.out.println("Failed to install to launcher, canceling!");
                 return;
@@ -503,10 +510,10 @@ public class NewInstaller extends JFrame {
         progressBar.setForeground(new Color(76, 135, 200));
         progressBar.setValue(0);
 
-        String zipName = (betaSelection.isSelected() ? "Iris-Sodium-Beta" : "Iris-Sodium") + "-" + selectedVersion.name + ".zip";
-        String downloadURL = "https://github.com/IrisShaders/Iris-Installer-Files/releases/latest/download/" + zipName;
-        //String zipName = "MCME-Mods.zip";
-        //String downloadURL = "https://github.com/Jubo30/Iris-InstallerxMcME/releases/download/3.0.2/MCME-Mods.zip";
+        //String zipName = (betaSelection.isSelected() ? "Iris-Sodium-Beta" : "Iris-Sodium") + "-" + selectedVersion.name + ".zip";
+        //String downloadURL = "https://github.com/IrisShaders/Iris-Installer-Files/releases/latest/download/" + zipName;
+        String zipName = "MCME-Mods.zip";
+        String downloadURL = "https://github.com/Jubo30/Iris-InstallerxMcME/releases/download/0.0.1/MCME-Mods.zip";
         File saveLocation = getStorageDirectory().resolve(zipName).toFile();
 
         final Downloader downloader = new Downloader(downloadURL, saveLocation);
@@ -540,7 +547,7 @@ public class NewInstaller extends JFrame {
                     installDir.mkdir();
                 }
 
-                File modsFolder = installAsMod ? getInstallDir().resolve("mods").toFile() : getInstallDir().resolve("iris-reserved").resolve(selectedVersion.name).toFile();
+                File modsFolder = installAsMod ? getInstallDir().resolve("mods").toFile() : getInstallDir().resolve("iris-reserved").resolve(selectedVersion).toFile();
                 File[] modsFolderContents = modsFolder.listFiles();
 
                 if (modsFolderContents != null) {
