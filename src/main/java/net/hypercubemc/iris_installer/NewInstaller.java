@@ -6,7 +6,8 @@ package net.hypercubemc.iris_installer;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
-import java.awt.Color;
+
+import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -214,7 +215,8 @@ public class NewInstaller extends JFrame {
 
         installType = new javax.swing.ButtonGroup();
         irisInstallerLabel = new javax.swing.JLabel();
-        gameVersionLabel = new javax.swing.JLabel();
+        thankYouLabel = new javax.swing.JLabel();
+        makeSureLabel = new javax.swing.JLabel();
         outdatedText1 = new javax.swing.JLabel();
         outdatedText2 = new javax.swing.JLabel();
         installationType = new javax.swing.JLabel();
@@ -230,9 +232,9 @@ public class NewInstaller extends JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(new ImageIcon(Objects.requireNonNull(Utils.class.getClassLoader().getResource("iris_profile_icon.png"))).getImage());
-        setMaximumSize(new java.awt.Dimension(480, 600));
-        setMinimumSize(new java.awt.Dimension(480, 600));
-        setPreferredSize(new java.awt.Dimension(480, 600));
+        setMaximumSize(new java.awt.Dimension(480, 510));
+        setMinimumSize(new java.awt.Dimension(480, 510));
+        setPreferredSize(new java.awt.Dimension(480, 510));
         setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
@@ -244,26 +246,8 @@ public class NewInstaller extends JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(30, 0, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(50, 0, 20, 0); // Increase space above "MCME-Installer"
         getContentPane().add(irisInstallerLabel, gridBagConstraints);
-
-        /*
-        gameVersionLabel.setFont(gameVersionLabel.getFont().deriveFont(gameVersionLabel.getFont().getStyle() | java.awt.Font.BOLD, 16));
-        gameVersionLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        gameVersionLabel.setText("Select game version:");
-        gameVersionLabel.setToolTipText("");
-        gameVersionLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        gameVersionLabel.setMaximumSize(new java.awt.Dimension(300, 24));
-        gameVersionLabel.setMinimumSize(new java.awt.Dimension(168, 24));
-        gameVersionLabel.setPreferredSize(new java.awt.Dimension(168, 24));
-        gameVersionLabel.setRequestFocusEnabled(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
-        getContentPane().add(gameVersionLabel, gridBagConstraints);
-         */
 
         outdatedText1.setFont(outdatedText1.getFont().deriveFont((float)16));
         outdatedText1.setForeground(new java.awt.Color(255, 204, 0));
@@ -302,7 +286,7 @@ public class NewInstaller extends JFrame {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(12, 0, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(3, 0, 0, 0);
         getContentPane().add(installationType, gridBagConstraints);
 
         installationDirectory.setFont(installationDirectory.getFont().deriveFont(installationDirectory.getFont().getStyle() | java.awt.Font.BOLD, 16));
@@ -349,24 +333,6 @@ public class NewInstaller extends JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
         getContentPane().add(installationTypesContainer, gridBagConstraints);
 
-        /*
-        gameVersionList.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        gameVersionList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1.19", "1.18.2", "1.17.1", "1.16.5" }));
-        gameVersionList.setMaximumSize(new java.awt.Dimension(168, 35));
-        gameVersionList.setMinimumSize(new java.awt.Dimension(168, 35));
-        gameVersionList.setPreferredSize(new java.awt.Dimension(168, 35));
-        gameVersionList.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                //gameVersionListItemStateChanged(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
-        getContentPane().add(gameVersionList, gridBagConstraints);
-         */
-
         betaSelection.setFont(betaSelection.getFont().deriveFont((float)16));
         betaSelection.setText("Use beta version (not recommended)");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -403,12 +369,11 @@ public class NewInstaller extends JFrame {
         gridBagConstraints.insets = new java.awt.Insets(40, 0, 0, 0);
         getContentPane().add(progressBar, gridBagConstraints);
 
-        installButton.setFont(installButton.getFont().deriveFont((float)16));
+        installButton.setFont(installButton.getFont().deriveFont((float) 14)); // Adjust font size as needed
         installButton.setText("Install");
-        installButton.setToolTipText("");
-        installButton.setMargin(new java.awt.Insets(10, 70, 10, 70));
-        installButton.setMaximumSize(new java.awt.Dimension(320, 45));
-        installButton.setMinimumSize(new java.awt.Dimension(173, 45));
+        installButton.setMargin(new java.awt.Insets(5, 50, 5, 50)); // Adjust margins as needed
+        installButton.setMaximumSize(new java.awt.Dimension(320, 35)); // Adjust height as needed
+        installButton.setMinimumSize(new java.awt.Dimension(173, 35));
         installButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 installButtonMouseClicked(evt);
@@ -418,8 +383,50 @@ public class NewInstaller extends JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 11;
-        gridBagConstraints.insets = new java.awt.Insets(12, 0, 30, 0);
+        gridBagConstraints.gridheight = 1; // Reset gridheight to default
+        gridBagConstraints.insets = new java.awt.Insets(12, 0, 0, 0);
         getContentPane().add(installButton, gridBagConstraints);
+
+        thankYouLabel.setFont(thankYouLabel.getFont().deriveFont(thankYouLabel.getFont().getStyle() | Font.PLAIN, 11));
+        thankYouLabel.setHorizontalAlignment(SwingConstants.RIGHT); // Set horizontal alignment to RIGHT
+        thankYouLabel.setVerticalAlignment(SwingConstants.TOP); // Set vertical alignment to TOP
+        thankYouLabel.setText("<html>Thank you IMS for providing this installer.</html>");
+        thankYouLabel.setToolTipText("");
+        thankYouLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        thankYouLabel.setMaximumSize(new java.awt.Dimension(300, 48)); // Increase the height
+        thankYouLabel.setMinimumSize(new java.awt.Dimension(168, 48)); // Increase the height
+        thankYouLabel.setPreferredSize(new java.awt.Dimension(168, 48)); // Increase the height
+        thankYouLabel.setRequestFocusEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.0; // Set weighty to 0 to prevent expansion
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHEAST;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH; // Allow the label to fill both horizontally and vertically
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 20); // Adjust the bottom inset
+        getContentPane().add(thankYouLabel, gridBagConstraints);
+
+
+        makeSureLabel.setFont(makeSureLabel.getFont().deriveFont(makeSureLabel.getFont().getStyle() | Font.PLAIN, 14));
+        makeSureLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        makeSureLabel.setVerticalAlignment(SwingConstants.TOP);
+        makeSureLabel.setText("Please make sure that you have Minecraft and the launcher closed.");
+        makeSureLabel.setToolTipText("");
+        makeSureLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        makeSureLabel.setMaximumSize(new java.awt.Dimension(400, 48)); // Adjust the size as needed
+        makeSureLabel.setMinimumSize(new java.awt.Dimension(200, 48)); // Adjust the size as needed
+        makeSureLabel.setPreferredSize(new java.awt.Dimension(200, 48)); // Adjust the size as needed
+        makeSureLabel.setRequestFocusEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH; // Align to the top
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 1, 0); // Decrease space between text and "Installation type"
+        getContentPane().add(makeSureLabel, gridBagConstraints);
 
         pack();
         setLocationRelativeTo(null);
@@ -666,7 +673,6 @@ public class NewInstaller extends JFrame {
     private javax.swing.JCheckBox betaSelection;
     private javax.swing.JButton directoryName;
     private javax.swing.JRadioButton fabricType;
-    private javax.swing.JLabel gameVersionLabel;
     private javax.swing.JComboBox<String> gameVersionList;
     private javax.swing.JButton installButton;
     private javax.swing.ButtonGroup installType;
@@ -678,5 +684,7 @@ public class NewInstaller extends JFrame {
     private javax.swing.JLabel outdatedText2;
     private javax.swing.JProgressBar progressBar;
     private javax.swing.JRadioButton standaloneType;
+    private javax.swing.JLabel thankYouLabel;
+    private javax.swing.JLabel makeSureLabel;
     // End of variables declaration//GEN-END:variables
 }
