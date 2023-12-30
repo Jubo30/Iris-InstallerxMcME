@@ -484,7 +484,7 @@ public class NewInstaller extends JFrame {
     }//GEN-LAST:event_fabricTypeMouseClicked
 
     private void installButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_installButtonMouseClicked
-        String loaderName = installAsMod ? "fabric-loader" : "mcme-loader";
+        String loaderName = installAsMod ? "fabric-loader" : "iris-fabric-loader";
 
         try {
             URL loaderVersionUrl = new URL("https://raw.githubusercontent.com/IrisShaders/Iris-Installer-Maven/master/latest-loader");

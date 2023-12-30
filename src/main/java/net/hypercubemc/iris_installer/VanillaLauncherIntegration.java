@@ -47,7 +47,7 @@ public class VanillaLauncherIntegration {
         Files.createFile(dummyJar);
         URL profileUrl = new URL("https://meta.fabricmc.net/" + (String.format("v2/versions/loader/%s/%s/profile/json", gameVersion, loaderVersion)));
         Json profileJson = Json.read(profileUrl);
-        if (loaderName.equals("mcme-loader")) {
+        if (loaderName.equals("iris-fabric-loader")) {
             editVersionJson(profileJson, modsFolder);
         }
         Utils.writeToFile(profileJsonPath, profileJson.toString());
