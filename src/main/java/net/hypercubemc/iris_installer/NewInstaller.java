@@ -520,7 +520,7 @@ public class NewInstaller extends JFrame {
         //String zipName = (betaSelection.isSelected() ? "Iris-Sodium-Beta" : "Iris-Sodium") + "-" + selectedVersion.name + ".zip";
         //String downloadURL = "https://github.com/IrisShaders/Iris-Installer-Files/releases/latest/download/" + zipName;
         String zipName = "MCME-Mods.zip";
-        String downloadURL = "https://github.com/Jubo30/Iris-InstallerxMcME/releases/download/0.0.1/MCME-Mods.zip";
+        String downloadURL = "https://github.com/MCME/mcme-installer/releases/download/Mods/MCME-Mods.zip";
         File saveLocation = getStorageDirectory().resolve(zipName).toFile();
 
         final Downloader downloader = new Downloader(downloadURL, saveLocation);
